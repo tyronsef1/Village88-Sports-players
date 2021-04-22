@@ -20,6 +20,14 @@ class Players extends CI_Controller {
 	 */
 	public function index()
 	{
-		echo "Hello World!";
+		$this->load->view('player/index.php');
+	}
+
+	public function search()
+	{
+		$this->load->model('Player_model');
+		$input = $this->input->post(NULL, TRUE);
+		$view_data['players'] = $this->Player_model->search($input);
+		$this->load->view('player/index.php', $view_data);
 	}
 }
